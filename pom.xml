@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.kscs.util</groupId>
+	<artifactId>jxpath-object-formatter</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>Wrapper for apache commons-jxpath to generate string representations of JAXB-serializable objects</name>
+	<packaging>jar</packaging>
+
+	<properties>
+		<github.global.server>github</github.global.server>
+	</properties>
+
+	<scm>
+		<connection>scm:git:https://github.com/mklemm/jxpath-object-formatter.git</connection>
+		<developerConnection>scm:git:https://github.com/mklemm/jxpath-object-formatter.git</developerConnection>
+		<url>https://github.com/mklemm/jxpath-object-formatter.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.kscs.util</groupId>
+			<artifactId>jxpath</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<inherited>true</inherited>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.3.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-gitexe</artifactId>
+						<version>1.2</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<tagBase>https://github.com/mklemm/jxpath-object-formatter.git</tagBase>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>default-server</id>
+			<name>snapshots-repo</name>
+			<url>${default.snapshots}</url>
+		</snapshotRepository>
+		<repository>
+			<id>default-server</id>
+			<name>releases-repo</name>
+			<url>${default.releases}</url>
+		</repository>
+	</distributionManagement>
+
+</project>

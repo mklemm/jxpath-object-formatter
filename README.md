@@ -5,6 +5,7 @@ This uses a [patched version](http://github.com/mklemm/commons-jxpath) of apache
 
 Specify the class
     com.kscs.util.jaxb.ObjectFormatter
-as an argument to the "-formatter" command line option of the jaxb-format-plugin, then annotate your XSD complexTypes with the "expression" binding customization, setting the "select" attribute to an XPath expression that evaluates to a string value.
+as an argument to the "-formatter" command line option of the jaxb-format-plugin, then annotate your XSD complexTypes
+with the "expression" binding customization, setting the "select" attribute to an XPath expression that evaluates to a string value.
 
 
