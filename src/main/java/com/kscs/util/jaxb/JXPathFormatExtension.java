@@ -32,14 +32,31 @@ import java.util.Date;
  * @author Mirko Klemm 2015-01-22
  */
 public class JXPathFormatExtension {
+	/**
+	 * Formats a date value according to ISO 8601
+	 * @param date Date to format
+	 * @return ISO 8601 string representation of date
+	 */
 	public static String isoDate(final Date date) {
 		return date(date, "yyyy-MM-dd");
 	}
 
+	/**
+	 * Formats a date and time value according to ISO 8601
+	 * @param date Date to format
+	 * @return ISO 8601 string representation of date-time
+	 */
 	public static String isoDateTime(final Date date) {
 		return date(date, "yyyy-MM-dd'T'HH:MM:ssZ");
 	}
 
+	/**
+	 * Uses the {@link java.text.MessageFormat} class to format
+	 * a given argument.
+	 * @param pattern Pattern string passed to MessageFormat
+	 * @param val Object to format
+	 * @return result of MessageFormat.format(val)
+	 */
 	public static String format(final String pattern, final Object val) {
 		return MessageFormat.format(pattern, val);
 	}
