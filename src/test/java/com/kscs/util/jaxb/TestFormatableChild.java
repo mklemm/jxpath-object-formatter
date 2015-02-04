@@ -1,4 +1,4 @@
-package com.dvb.foundation.jaxb;
+package com.kscs.util.jaxb;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,7 +12,7 @@ import java.math.BigInteger;
  * Created by klemm0 on 2015-01-22.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name ="test-formatable-child", propOrder = {"name", "displayName", "value", "spacing", "underwritingAmount"})
+@XmlType(name ="test-formatable-child", namespace = "http://www.kscs.com/util/jaxb/of/test/sub", propOrder = {"name", "displayName", "value", "spacing", "underwritingAmount"})
 public class TestFormatableChild {
 	@XmlAttribute
 	private String name;

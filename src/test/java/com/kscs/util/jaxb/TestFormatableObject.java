@@ -1,4 +1,4 @@
-package com.dvb.foundation.jaxb;
+package com.kscs.util.jaxb;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -13,10 +13,12 @@ import java.util.Date;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {"canonicalName","orderKey", "validFrom", "formatableChild"})
-@XmlRootElement(name = "test-formatable-object")
+@XmlRootElement(name = "test-formatable-object", namespace = "http://www.kscs.com/util/jaxb/of/test")
 public class TestFormatableObject {
 	@XmlAttribute(name = "can-name")
 	private String canonicalName;
+	@XmlElement(name = "can-name")
+	private String canonicalNameElement;
 	@XmlAttribute(name = "order-key")
 	private String orderKey;
 	@XmlElement(name="child")
@@ -24,11 +26,12 @@ public class TestFormatableObject {
 	@XmlElement(name = "valid-from")
 	private Date validFrom;
 
-	public TestFormatableObject(final String canonicalName, final String orderKey, final Date validFrom, final TestFormatableChild formatableChild) {
+	public TestFormatableObject(final String canonicalName, String canonicalNameElement, final String orderKey, final Date validFrom, final TestFormatableChild formatableChild) {
 		this.canonicalName = canonicalName;
 		this.orderKey = orderKey;
 		this.validFrom = validFrom;
 		this.formatableChild = formatableChild;
+		this.canonicalNameElement = canonicalNameElement;
 	}
 
 	public TestFormatableObject() {
@@ -64,5 +67,13 @@ public class TestFormatableObject {
 
 	public void setValidFrom(final Date validFrom) {
 		this.validFrom = validFrom;
+	}
+
+	public String getCanonicalNameElement() {
+		return this.canonicalNameElement;
+	}
+
+	public void setCanonicalNameElement(final String canonicalNameElement) {
+		this.canonicalNameElement = canonicalNameElement;
 	}
 }

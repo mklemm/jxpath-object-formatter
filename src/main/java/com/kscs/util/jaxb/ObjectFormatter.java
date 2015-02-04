@@ -30,6 +30,7 @@ public class ObjectFormatter {
 		final JXPathContext context = JXPathContext.newContext(obj);
 		context.setFunctions(new ClassFunctions(JXPathFormatExtension.class, "format"));
 		if(this.locale != null) {
+			context.registerNamespace("tns","http://");
 			context.setLocale(this.locale);
 			context.setDecimalFormatSymbols(null, new DecimalFormatSymbols(this.locale));
 		}
