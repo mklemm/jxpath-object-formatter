@@ -1,6 +1,4 @@
-package com.kscs.util.jaxb;
-
-import javax.xml.namespace.NamespaceContext;
+package com.kscs.util.jaxb.format;
 
 import org.apache.commons.jxpath.JXPathBeanInfo;
 import org.apache.commons.jxpath.JXPathBeanInfoFactory;
@@ -10,7 +8,7 @@ import org.apache.commons.jxpath.JXPathBeanInfoFactory;
  */
 public class JaxbJXPathBeanInfoFactory implements JXPathBeanInfoFactory {
 	@Override
-	public JXPathBeanInfo createBeanInfo(final NamespaceContext namespaceContext, final Class clazz) {
-		return new JaxbJXPathBeanInfo(namespaceContext, clazz);
+	public JXPathBeanInfo createBeanInfo(final Class clazz) {
+		return new JaxbJXPathBeanInfo(clazz, false);
 	}
 }

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.kscs.util.jaxb;
+package com.kscs.util.jaxb.format;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;

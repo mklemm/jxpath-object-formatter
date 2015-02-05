@@ -1,4 +1,4 @@
-package com.kscs.util.jaxb;
+package com.kscs.util.jaxb.format;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,7 +12,7 @@ import java.util.Date;
  * Created by klemm0 on 2015-01-22.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {"canonicalName","orderKey", "validFrom", "formatableChild"})
+@XmlType(name = "", propOrder = {"canonicalName","canonicalNameElement","orderKey", "validFrom", "formatableChild"})
 @XmlRootElement(name = "test-formatable-object", namespace = "http://www.kscs.com/util/jaxb/of/test")
 public class TestFormatableObject {
 	@XmlAttribute(name = "can-name")

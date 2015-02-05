@@ -10,7 +10,7 @@ This module also registers a number of extension functions (see javadoc or sourc
 that can be used in XPath expressions and may be useful for some special cases.
 
 Specify the class
-    com.kscs.util.jaxb.ObjectFormatter
+    com.kscs.util.jaxb.format.ObjectFormatter
 as an argument to the "-formatter" command line option of the jaxb-format-plugin, then annotate your XSD complexTypes
 with the "expression" binding customization, setting the "select" attribute to an XPath expression that evaluates to a string value.
 
