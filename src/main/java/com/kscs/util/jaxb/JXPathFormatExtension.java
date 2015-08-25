@@ -35,9 +35,57 @@ public class JXPathFormatExtension {
 	public static String isoDate(final Date date) {
 		return date(date, "yyyy-MM-dd");
 	}
-
 	public static String isoDateTime(final Date date) {
 		return date(date, "yyyy-MM-dd'T'HH:MM:ssZ");
+	}
+
+	private static Object decode(final Object ref, final Object[] keyValues) {
+		final int hasDef =  keyValues.length % 2 == 0 ? 0 : 1;
+		final Object def = keyValues.length == 0 || hasDef == 0 ? null : keyValues[keyValues.length - 1];
+		if(ref == null) {
+			for (int i = 0; i < keyValues.length - hasDef; i += 2) {
+				final Object key = keyValues[i];
+				final Object val = keyValues[i + 1];
+				if (key == null) {
+					return val;
+				}
+			}
+			return def;
+		} else {
+			for (int i = 0; i < keyValues.length - hasDef; i += 2) {
+				final Object key = keyValues[i];
+				final Object val = keyValues[i + 1];
+				if (ref.equals(key)) {
+					return val;
+				}
+			}
+			return def;
+		}
+	}
+
+	public static Object decode(Object ref, Object key1, Object val1) {
+		return decode(ref, new Object[]{val1, key1, val1});
+	}
+	public static Object decode(Object ref, Object key1, final Object val1, final Object def) {
+		return decode(ref, new Object[]{key1, val1, def});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object def) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, def});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object def) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, def});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object key4, final Object val4) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, key4, val4});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object key4, final Object val4, final Object def) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, key4, val4, def});
 	}
 
 	public static String format(final String pattern, final Object val) {
