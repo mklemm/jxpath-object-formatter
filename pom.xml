@@ -6,7 +6,7 @@
 
 	<groupId>com.kscs.util</groupId>
 	<artifactId>jxpath-object-formatter</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 
 	<name>Wrapper for apache commons-jxpath to generate string representations of JAXB-serializable objects</name>
 	<packaging>jar</packaging>
@@ -19,7 +19,8 @@
 		<connection>scm:git:https://github.com/mklemm/jxpath-object-formatter.git</connection>
 		<developerConnection>scm:git:https://github.com/mklemm/jxpath-object-formatter.git</developerConnection>
 		<url>https://github.com/mklemm/jxpath-object-formatter.git</url>
-	</scm>
+	  <tag>jxpath-object-formatter-1.0.1</tag>
+  </scm>
 
 	<dependencies>
 		<dependency>
