@@ -1,14 +1,12 @@
-package com.dvb.foundation.jaxb;
+package com.kscs.util.jaxb;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Locale;
-import com.kscs.util.jaxb.ObjectFormatter;
-import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class ObjectFormatterTest {
 	public static final String SIMPLE_EXPRESSION = "concat('Formatted Object: \"',@can-name,':',@order-key, ' - ', format:isoDateTime(valid-from) ,'\"')";
@@ -24,7 +22,7 @@ public class ObjectFormatterTest {
 		final ObjectFormatter objectFormatter = new ObjectFormatter(ObjectFormatterTest.SIMPLE_EXPRESSION);
 		final String formatted = objectFormatter.format(new TestFormatableObject("test object", "1", new Date(115,0,1), new TestFormatableChild("Child", "Formatable Child", new BigInteger("2345678900786454112345"), new BigDecimal("8346524.83465564774555"), 9837836365454554.354736745523435d)));
 		System.out.println(formatted);
-		assertEquals(ObjectFormatterTest.SIMPLE_EXPECTED_RESULT, formatted);
+		Assert.assertEquals(ObjectFormatterTest.SIMPLE_EXPECTED_RESULT, formatted);
 	}
 
 	@Test
@@ -33,7 +31,7 @@ public class ObjectFormatterTest {
 
 		final String formatted = objectFormatter.format(new TestFormatableObject("FormatableObject", "A", new Date(115,1,28), new TestFormatableChild("Child", "Formatable Child", new BigInteger("2345678900786454112345"), new BigDecimal("8346524.83465564774555"), 9837836365454554.354736745523435d)));
 		System.out.println(formatted);
-		assertNotNull(formatted);
+		Assert.assertNotNull(formatted);
 	}
 
 	@Test
@@ -42,6 +40,6 @@ public class ObjectFormatterTest {
 
 		final String formatted = objectFormatter.format(new TestFormatableObject("FormatableObject", "A", new Date(115,1,28), new TestFormatableChild("ifrs", "Formatable Child", new BigInteger("2345678900786454112345"), new BigDecimal("8346524.83465564774555"), 9837836365454554.354736745523435d)));
 		System.out.println(formatted);
-		assertNotNull(formatted);
+		Assert.assertNotNull(formatted);
 	}
 }

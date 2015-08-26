@@ -1,12 +1,13 @@
-package com.dvb.foundation.jaxb;
+package com.kscs.util.jaxb;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 
 /**
  * Created by klemm0 on 2015-01-22.

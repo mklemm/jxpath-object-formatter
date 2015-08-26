@@ -27,6 +27,7 @@ package com.kscs.util.jaxb;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Mirko Klemm 2015-01-22
@@ -88,23 +89,40 @@ public class JXPathFormatExtension {
 		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, key4, val4, def});
 	}
 
+	private static String flattenFormat(final String pattern, final Object... params) {
+		final Object[] convertedParams = new Object[params.length];
+		for(int i = 0; i < params.length; i++) {
+			if(params[i] instanceof List) {
+				final List<?> list = (List<?>)params[i];
+				if(!list.isEmpty()) {
+					convertedParams[i] = list.get(0);
+				} else {
+					convertedParams[i] = params[i];
+				}
+			} else {
+				convertedParams[i] = params[i];
+			}
+		}
+		return MessageFormat.format(pattern, convertedParams);
+	}
+
 	public static String format(final String pattern, final Object val) {
-		return MessageFormat.format(pattern, val);
+		return flattenFormat(pattern, val);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2) {
-		return MessageFormat.format(pattern, val1, val2);
+		return flattenFormat(pattern, val1, val2);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3) {
-		return MessageFormat.format(pattern, val1, val2, val3);
+		return flattenFormat(pattern, val1, val2, val3);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3, final Object val4) {
-		return MessageFormat.format(pattern, val1, val2, val3, val4);
+		return flattenFormat(pattern, val1, val2, val3, val4);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3, final Object val4, final Object val5) {
-		return MessageFormat.format(pattern, val1, val2, val3, val4, val5);
+		return flattenFormat(pattern, val1, val2, val3, val4, val5);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3, final Object val4, final Object val5, final Object val6) {
-		return MessageFormat.format(pattern, val1, val2, val3, val4, val5, val6);
+		return flattenFormat(pattern, val1, val2, val3, val4, val5, val6);
 	}
 
 	public static String date(final Date date, final String pattern) {

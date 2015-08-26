@@ -1,4 +1,4 @@
-package com.dvb.foundation.jaxb;
+package com.kscs.util.jaxb;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
