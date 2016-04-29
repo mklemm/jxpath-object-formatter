@@ -6,7 +6,7 @@
 
 	<groupId>net.codesup.util</groupId>
 	<artifactId>jxpath-object-formatter</artifactId>
-	<version>1.2.0-SNAPSHOT</version>
+	<version>1.1.0-SNAPSHOT</version>
 
 	<name>Wrapper for apache commons-jxpath to generate string representations of JAXB-serializable objects</name>
 	<packaging>jar</packaging>
