@@ -1,4 +1,4 @@
-package com.dvb.foundation.jaxb;
+package net.codesup.jxpath.formatter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

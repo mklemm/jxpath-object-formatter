@@ -1,4 +1,4 @@
-package com.kscs.util.jaxb;
+package net.codesup.jxpath.formatter;
 
 import java.text.DecimalFormatSymbols;
 import java.util.HashMap;

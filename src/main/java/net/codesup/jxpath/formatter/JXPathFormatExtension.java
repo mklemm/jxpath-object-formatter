@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-package com.kscs.util.jaxb;
+package net.codesup.jxpath.formatter;
 
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;

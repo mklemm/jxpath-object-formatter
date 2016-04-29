@@ -1,4 +1,4 @@
-package com.kscs.util.jaxb;
+package net.codesup.jxpath.formatter;
 
 import org.apache.commons.jxpath.JXPathBeanInfo;
 import org.apache.commons.jxpath.JXPathBeanInfoFactory;

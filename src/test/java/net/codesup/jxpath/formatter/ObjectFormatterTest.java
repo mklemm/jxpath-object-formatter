@@ -1,10 +1,10 @@
-package com.dvb.foundation.jaxb;
+package net.codesup.jxpath.formatter;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Date;
 import java.util.Locale;
-import com.kscs.util.jaxb.ObjectFormatter;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
