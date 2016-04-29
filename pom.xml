@@ -10,7 +10,20 @@
 
 	<name>Wrapper for apache commons-jxpath to generate string representations of JAXB-serializable objects</name>
 	<packaging>jar</packaging>
+	<url>https://github.com/mklemm/jxpath-object-formatter</url>
+		<licenses>
+			<license>
+				<name>MIT License</name>
+				<url>http://opensource.org/licenses/MIT</url>
+			</license>
+		</licenses>
 
+		<developers>
+			<developer>
+				<name>Mirko Klemm</name>
+				<email>mirko@cm-klemm.de</email>
+			</developer>
+		</developers>
 	<properties>
 		<github.global.server>github</github.global.server>
 	</properties>
@@ -26,7 +39,7 @@
 		<dependency>
 			<groupId>net.codesup.util</groupId>
 			<artifactId>jxpath</artifactId>
-			<version>1.1.0-SNAPSHOT</version>
+			<version>1.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
