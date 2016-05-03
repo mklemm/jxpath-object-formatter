@@ -27,36 +27,105 @@ package net.codesup.jxpath.formatter;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author Mirko Klemm 2015-01-22
  */
-public class JXPathFormatExtension {
+public final class JXPathFormatExtension {
+	private JXPathFormatExtension() {
+	}
+
 	public static String isoDate(final Date date) {
 		return date(date, "yyyy-MM-dd");
 	}
-
 	public static String isoDateTime(final Date date) {
 		return date(date, "yyyy-MM-dd'T'HH:MM:ssZ");
 	}
 
+	private static Object decode(final Object ref, final Object[] keyValues) {
+		final int hasDef =  keyValues.length % 2 == 0 ? 0 : 1;
+		final Object def = keyValues.length == 0 || hasDef == 0 ? null : keyValues[keyValues.length - 1];
+		if(ref == null) {
+			for (int i = 0; i < keyValues.length - hasDef; i += 2) {
+				final Object key = keyValues[i];
+				final Object val = keyValues[i + 1];
+				if (key == null) {
+					return val;
+				}
+			}
+			return def;
+		} else {
+			for (int i = 0; i < keyValues.length - hasDef; i += 2) {
+				final Object key = keyValues[i];
+				final Object val = keyValues[i + 1];
+				if (ref.equals(key)) {
+					return val;
+				}
+			}
+			return def;
+		}
+	}
+
+	public static Object decode(Object ref, Object key1, Object val1) {
+		return decode(ref, new Object[]{val1, key1, val1});
+	}
+	public static Object decode(Object ref, Object key1, final Object val1, final Object def) {
+		return decode(ref, new Object[]{key1, val1, def});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object def) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, def});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object def) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, def});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object key4, final Object val4) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, key4, val4});
+	}
+	public static Object decode(Object ref, Object key1, Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object key4, final Object val4, final Object def) {
+		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, key4, val4, def});
+	}
+
+	private static String flattenFormat(final String pattern, final Object... params) {
+		final Object[] convertedParams = new Object[params.length];
+		for(int i = 0; i < params.length; i++) {
+			if(params[i] instanceof List) {
+				final List<?> list = (List<?>)params[i];
+				if(!list.isEmpty()) {
+					convertedParams[i] = list.get(0);
+				} else {
+					convertedParams[i] = params[i];
+				}
+			} else {
+				convertedParams[i] = params[i];
+			}
+		}
+		return MessageFormat.format(pattern, convertedParams);
+	}
+
 	public static String format(final String pattern, final Object val) {
-		return MessageFormat.format(pattern, val);
+		return flattenFormat(pattern, val);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2) {
-		return MessageFormat.format(pattern, val1, val2);
+		return flattenFormat(pattern, val1, val2);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3) {
-		return MessageFormat.format(pattern, val1, val2, val3);
+		return flattenFormat(pattern, val1, val2, val3);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3, final Object val4) {
-		return MessageFormat.format(pattern, val1, val2, val3, val4);
+		return flattenFormat(pattern, val1, val2, val3, val4);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3, final Object val4, final Object val5) {
-		return MessageFormat.format(pattern, val1, val2, val3, val4, val5);
+		return flattenFormat(pattern, val1, val2, val3, val4, val5);
 	}
 	public static String format(final String pattern, final Object val1, final Object val2, final Object val3, final Object val4, final Object val5, final Object val6) {
-		return MessageFormat.format(pattern, val1, val2, val3, val4, val5, val6);
+		return flattenFormat(pattern, val1, val2, val3, val4, val5, val6);
 	}
 
 	public static String date(final Date date, final String pattern) {
