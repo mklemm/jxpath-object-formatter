@@ -1,6 +1,5 @@
 package net.codesup.jxpath.formatter;
 
-import java.text.DecimalFormatSymbols;
 import java.util.HashMap;
 import java.util.Locale;
 
@@ -21,12 +20,8 @@ public class Evaluator {
 	}
 
 	public Evaluator(final Object instance, final Locale locale) {
-		this.context = JXPathContext.newContext(instance);
+		this.context = JXPathContext.newContext(instance, locale);
 		this.context.setFunctions(new ClassFunctions(JXPathFormatExtension.class, "format"));
-		if(locale!= null) {
-			this.context.setLocale(locale);
-			this.context.setDecimalFormatSymbols(null, new DecimalFormatSymbols(locale));
-		}
 	}
 
 	public Object evaluate(final String expressionString) {

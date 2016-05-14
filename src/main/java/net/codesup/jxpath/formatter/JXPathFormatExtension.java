@@ -40,14 +40,19 @@ public final class JXPathFormatExtension {
 	}
 
 	public static String isoDateTime(final Date date) {
-		return date(date, "yyyy-MM-dd'T'HH:MM:ssZ");
+		return date(date, "yyyy-MM-dd'T'HH:mm:ssZ");
 	}
 
 	private static Object decode(final Object ref, final Object[] keyValues) {
-		final int hasDef = keyValues.length % 2 == 0 ? 0 : 1;
-		final Object def = keyValues.length == 0 || hasDef == 0 ? null : keyValues[keyValues.length - 1];
+		return decode(ref, keyValues, null);
+	}
+
+	private static Object decode(final Object ref, final Object[] keyValues, final Object def) {
+		if (keyValues.length % 2 > 0) {
+			throw new IllegalArgumentException("Invalid number of arguments to \"decode\" function: Usage: decode(expr [,key,value]* [,default]?)");
+		}
 		if (ref == null) {
-			for (int i = 0; i < keyValues.length - hasDef; i += 2) {
+			for (int i = 0; i < keyValues.length; i += 2) {
 				final Object key = keyValues[i];
 				final Object val = keyValues[i + 1];
 				if (key == null) {
@@ -56,7 +61,7 @@ public final class JXPathFormatExtension {
 			}
 			return def;
 		} else {
-			for (int i = 0; i < keyValues.length - hasDef; i += 2) {
+			for (int i = 0; i < keyValues.length; i += 2) {
 				final Object key = keyValues[i];
 				final Object val = keyValues[i + 1];
 				if (ref.equals(key)) {
@@ -74,37 +79,44 @@ public final class JXPathFormatExtension {
 		return null;
 	}
 
+	public static Object decode(final Object ref) {
+		return decode(ref, new Object[]{});
+	}
+
+	public static Object decode(final Object ref, final Object def) {
+		return decode(ref, new Object[]{}, def);
+	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1) {
-		return decode(ref, new Object[]{val1, key1, val1});
+		return decode(ref, new Object[]{key1, val1});
 	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1, final Object def) {
-		return decode(ref, new Object[]{key1, val1, def});
+		return decode(ref, new Object[]{key1, val1}, def);
 	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1, final Object key2, final Object val2) {
-		return decode(ref, new Object[]{val1, key1, val1, key2, val2});
+		return decode(ref, new Object[]{key1, val1, key2, val2});
 	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1, final Object key2, final Object val2, final Object def) {
-		return decode(ref, new Object[]{val1, key1, val1, key2, val2, def});
+		return decode(ref, new Object[]{key1, val1, key2, val2}, def);
 	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1, final Object key2, final Object val2, final Object key3, final Object val3) {
-		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3});
+		return decode(ref, new Object[]{key1, val1, key2, val2, key3, val3});
 	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object def) {
-		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, def});
+		return decode(ref, new Object[]{key1, val1, key2, val2, key3, val3}, def);
 	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object key4, final Object val4) {
-		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, key4, val4});
+		return decode(ref, new Object[]{key1, val1, key2, val2, key3, val3, key4, val4});
 	}
 
 	public static Object decode(final Object ref, final Object key1, final Object val1, final Object key2, final Object val2, final Object key3, final Object val3, final Object key4, final Object val4, final Object def) {
-		return decode(ref, new Object[]{val1, key1, val1, key2, val2, key3, val3, key4, val4, def});
+		return decode(ref, new Object[]{key1, val1, key2, val2, key3, val3, key4, val4}, def);
 	}
 
 	public static Object coalesce(final Object ref0, final Object ref1) {

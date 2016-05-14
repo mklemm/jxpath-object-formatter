@@ -1,5 +1,6 @@
 package net.codesup.jxpath.formatter;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import org.junit.Assert;
@@ -10,51 +11,46 @@ import org.junit.Test;
  */
 public class JXPathFormatExtensionTest {
 	@Test
-	public void isoDate() throws Exception {
-		Assert.assertEquals(JXPathFormatExtension.isoDate(new Date(115, 1, 1)), "2015-02-01");
+	public void testIsoDate() throws Exception {
+		Assert.assertEquals("2015-02-01", JXPathFormatExtension.isoDate(new Date(115, 1, 1)));
 	}
 
 	@Test
-	public void isoDateTime() throws Exception {
-		Assert.assertEquals(JXPathFormatExtension.isoDateTime(new Date(115, 1, 1)), "2015-02-01T00:00:00+0100");
+	public void testIsoDateTime() throws Exception {
+		Calendar cal = Calendar.getInstance();
+		cal.set(2015, Calendar.FEBRUARY, 1, 0, 0, 0);
+		System.out.println(cal.getTime().toString());
+		Assert.assertEquals("2015-02-01T00:00:00+0100", JXPathFormatExtension.isoDateTime(cal.getTime()));
 	}
 
 	@Test
-	public void decode() throws Exception {
+	public void testDecode1() throws Exception {
+		Assert.assertNull(JXPathFormatExtension.decode(null));
+		Assert.assertNull(JXPathFormatExtension.decode("a"));
+	}
+
+	@Test
+	public void testDecode2() throws Exception {
+		Assert.assertEquals("a", JXPathFormatExtension.decode(null, "a"));
+		Assert.assertEquals("b", JXPathFormatExtension.decode("a", "b"));
+	}
+
+	@Test
+	public void testDecode3() throws Exception {
+		Assert.assertNull(JXPathFormatExtension.decode("a", "b", "c"));
+		Assert.assertEquals("b", JXPathFormatExtension.decode("a", "a", "b"));
+	}
+
+	@Test
+	public void testDecode4() throws Exception {
 		Assert.assertEquals("d", JXPathFormatExtension.decode("a", "b", "c", "d"));
-		Assert.assertEquals("b", JXPathFormatExtension.decode("a", "a", "b", "d"));
+		Assert.assertEquals("c", JXPathFormatExtension.decode("a", "a", "c", "d"));
 	}
 
 	@Test
-	public void decode1() throws Exception {
-		Assert.assertEquals("f", JXPathFormatExtension.decode("a", "b", "c", "d", "e", "f"));
-		Assert.assertEquals("b", JXPathFormatExtension.decode("a", "a", "b", "c", "d", "f"));
-	}
-
-	@Test
-	public void decode2() throws Exception {
-		Assert.assertEquals(JXPathFormatExtension.decode("a", "b", "c", "d"), "d");
-		Assert.assertEquals(JXPathFormatExtension.decode("a", "a", "b", "d"), "b");
-	}
-
-	@Test
-	public void decode3() throws Exception {
-	}
-
-	@Test
-	public void decode4() throws Exception {
-	}
-
-	@Test
-	public void decode5() throws Exception {
-	}
-
-	@Test
-	public void decode6() throws Exception {
-	}
-
-	@Test
-	public void decode7() throws Exception {
+	public void testDecode5() throws Exception {
+		Assert.assertNull(JXPathFormatExtension.decode("a", "b", "c", "d", "e"));
+		Assert.assertEquals("e", JXPathFormatExtension.decode("d", "b", "c", "d", "e"));
 	}
 
 	@Test
@@ -70,61 +66,5 @@ public class JXPathFormatExtensionTest {
 		Assert.assertEquals("a", JXPathFormatExtension.coalesce("a", "b", "c"));
 		Assert.assertEquals("b", JXPathFormatExtension.coalesce(null, "b", "c"));
 		Assert.assertEquals("c", JXPathFormatExtension.coalesce(null, null, "c"));
-	}
-
-	@Test
-	public void coalesce2() throws Exception {
-	}
-
-	@Test
-	public void coalesce3() throws Exception {
-	}
-
-	@Test
-	public void coalesce4() throws Exception {
-	}
-
-	@Test
-	public void coalesce5() throws Exception {
-	}
-
-	@Test
-	public void coalesce6() throws Exception {
-	}
-
-	@Test
-	public void coalesce7() throws Exception {
-	}
-
-	@Test
-	public void format() throws Exception {
-	}
-
-	@Test
-	public void format1() throws Exception {
-	}
-
-	@Test
-	public void format2() throws Exception {
-	}
-
-	@Test
-	public void format3() throws Exception {
-	}
-
-	@Test
-	public void format4() throws Exception {
-	}
-
-	@Test
-	public void format5() throws Exception {
-	}
-
-	@Test
-	public void date() throws Exception {
-	}
-
-	@Test
-	public void hash() throws Exception {
 	}
 }
